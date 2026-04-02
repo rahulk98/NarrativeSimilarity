@@ -1,0 +1,22 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.ipynb_checkpoints/
+
+# Data (place your JSONL files here)
+data/*
+!data/.gitkeep
+
+# Preprocessed artifacts
+preprocessed/*
+!preprocessed/.gitkeep
+
+# Model checkpoints
+checkpoints/*
+!checkpoints/.gitkeep
+
+# Outputs (predictions, embeddings)
+outputs/*
+!outputs/.gitkeep
