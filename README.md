@@ -34,14 +34,6 @@ A neuro-symbolic system that decomposes stories into structured narrative graphs
                   Cosine Similarity
 ```
 
-## Key Results
-
-| Stage | Dev Accuracy | Method |
-|-------|-------------|--------|
-| Base GNN | ~86% | Triplet loss on 1,900 synthetic triplets |
-| + CORAL Adaptation | ~90% | Covariance alignment to target distribution |
-| + Pseudo-Labeling | ~96% | Recursive confidence-based self-training |
-
 ## Pipeline Stages
 
 | Stage | Script | Description | Requires |
