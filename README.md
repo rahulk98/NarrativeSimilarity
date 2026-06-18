@@ -34,6 +34,38 @@ A neuro-symbolic system that decomposes stories into structured narrative graphs
                   Cosine Similarity
 ```
 
+## Results
+
+The fused representation outperforms either modality alone on a pairwise narrative-similarity task, and the fusion stays fully interpretable at the modality level.
+
+### Performance
+
+| Evaluation | Metric | Score |
+|------------|--------|-------|
+| Pairwise similarity (anchor vs. two candidates) | Accuracy | **72.5%** |
+| Global cosine-similarity scoring | Accuracy | 64.75% |
+| Cross-lingual generalization (Tell-Me-Again, 500 triples across de/en/es/fr/it) | Precision | **95%** |
+
+Fusion beats either channel in isolation: the text channel rescues low-confidence graph decisions, and margin-sign agreement between the two channels is 89.8%.
+
+### Interpretability
+
+Omitting post-fusion normalization makes the fused cosine decompose exactly into additive terms, `S_fused = S_GG + S_TT + S_cross`:
+
+- **Exact additive decomposition** holds at R^2 = 1.0.
+- **Negligible cross term:** S_cross is ~0.0015 (+/- 0.005) against S_GG ~0.223 and S_TT ~0.133, so the two modalities contribute independently.
+- **Near-orthogonal subspaces:** principal-angle analysis gives 85.4 degrees globally and 89.8 degrees per-sample, confirming the channels carry complementary information.
+- **Rank asymmetry:** graph embeddings are effectively rank-1 (96.9% of variance in a single component), while text embeddings need 439 components to reach 95% variance.
+- **Implicit confidence-gating with no learned parameters:** across 400 test samples the graph margin dominates 327 decisions, and the text channel rescues the remaining 73 where the graph signal is weak.
+- **Which components drive the readout** (Frobenius-norm inspection of trained SAGEConv weights, reported as correlational): Action -> Story edges carry the strongest learned signal (71.2), followed by Outcome -> Story (69.8) and Theme -> Story (67.1).
+
+### Limitations
+
+- Graph quality depends entirely on upstream LLM extraction, which was not evaluated independently of end-task performance.
+- The GNN was trained on only 1,900 synthetic triplets; transfer to substantially different narrative domains is untested.
+- Weight-norm attributions are correlational; no edge-type ablations were run to confirm causality.
+- The single narrative-node readout can bottleneck complex subplot structures.
+
 ## Pipeline Stages
 
 | Stage | Script | Description | Requires |
