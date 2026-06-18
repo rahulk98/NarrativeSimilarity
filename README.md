@@ -1,8 +1,10 @@
 # LENS: Learning Explainable Neuro-Symbolic Representations of Narratives
 
-**SemEval-2026 Task 4 — Narrative Story Similarity and Narrative Representation Learning**
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/) [![PyTorch Geometric](https://img.shields.io/badge/PyTorch_Geometric-2.x-orange.svg)](https://pyg.org/) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A neuro-symbolic system that decomposes stories into structured narrative graphs, learns graph-level embeddings via a Heterogeneous Graph Neural Network, and fuses them with semantic text embeddings for narrative similarity.
+**SemEval-2026 Task 4: Narrative Story Similarity and Narrative Representation Learning**
+
+Given two stories, LENS decides whether they share the same underlying narrative. It uses an LLM to decompose each story into its themes, actions, and outcomes, builds a heterogeneous narrative graph from those components, learns a graph-level embedding with a Graph Neural Network, and fuses that structural signal with a semantic text embedding. Because the fusion is plain additive averaging, the final similarity score decomposes cleanly into how much the structure channel and the text channel each contributed, so the result stays interpretable rather than being an opaque dense vector.
 
 ## Architecture
 
