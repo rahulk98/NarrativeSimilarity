@@ -176,3 +176,8 @@ z = (normalize(graph_emb) + normalize(gemini_emb)) / 2
 ```
 
 No post-fusion normalization is applied, maintaining independent contributions from both modalities.
+
+## Contributors
+
+- Rahul Krishnan ([@rahulk98](https://github.com/rahulk98))
+- Sanjana Deshpande ([@ndsanjana](https://github.com/ndsanjana))
